@@ -1,4 +1,6 @@
+//Importation du package http de node
 const http = require('http');
+//Importation du fichier app.js
 const app = require('./app');
 
 const normalizePort = val => {
@@ -12,9 +14,11 @@ const normalizePort = val => {
   }
   return false;
 };
+//Indique le port express sur lequel l'application va tourner
 const port = normalizePort(process.env.PORT ||'3000');
 app.set('port', port);
 
+//Indique la gestion des erreurs
 const errorHandler = error => {
   if (error.syscall !== 'listen') {
     throw error;
@@ -35,6 +39,7 @@ const errorHandler = error => {
   }
 };
 
+//Création du serveur
 const server = http.createServer(app);
 
 server.on('error', errorHandler);

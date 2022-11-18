@@ -1,17 +1,21 @@
-//Installation bcrypt and jsonwebtoken
+//Installation bcrypt et jsonwebtoken
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+//Importation du model
 const User = require('../models/User');
 
-//Create user account
+//Création du compte utilisateur
 exports.signup = (req, res, next) => {
+    //Hachage du mdp
     bcrypt.hash(req.body.password, 10)
     .then(hash => {
+        //Création d'une nouvelle instance du modele user avec new User
         const user = new User ({
             email: req.body.email,
             password: hash
         });
+        //Save permet d'enregistrer l'objet dans la base de donnée
         user.save()
         .then(() => res.status(201).json ({ message : 'Utilisateur créé !'}))
         .catch(error => res.status(400).json({error}));
@@ -19,13 +23,15 @@ exports.signup = (req, res, next) => {
     .catch(error => res.status(500).json({ error }));
 };
 
-//Login user account
+//Connexion des utilisateurs
 exports.login = (req, res, next) => {
     User.findOne({ email: req.body.email})
+    //Check si l'utilisateur existe déjà
     .then(user => {
         if (user === null){
             res.status(401).json({message: 'Paire identifiant/mot de pass incorrecte'});
         } else {
+            //Compare ce qui a été saisie avec ce qui se trouve dans la base de donnée
             bcrypt.compare(req.body.password, user.password)
             .then(valid => {
                 if (!valid){

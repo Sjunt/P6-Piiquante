@@ -1,5 +1,7 @@
+//Importation d'express qui contiendra l'app
 const express = require('express');
 const app = express();
+//Importation de mongoose
 const mongoose = require('mongoose');
 const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
