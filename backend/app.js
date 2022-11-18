@@ -7,6 +7,9 @@ const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 const path = require('path');
 
+//Importation helmet (protection contre les vulnérabilités web)
+const helmet = require('helmet');
+
 mongoose.connect('mongodb+srv://Sjunt:farcoune@cluster0.7hevjn8.mongodb.net/?retryWrites=true&w=majority',
 { useNewUrlParser: true,
     useUnifiedTopology: true})
@@ -22,8 +25,11 @@ app.use((req, res, next) => {
     next();
   });
 
- app.use('/api/sauces', sauceRoutes);
- app.use('/api/auth', userRoutes);
- app.use('/images', express.static(path.join(__dirname, 'images')));
+ //noSniff permet de ne pas bloquer les images 
+app.use(helmet.noSniff());
+
+app.use('/api/sauces', sauceRoutes);
+app.use('/api/auth', userRoutes);
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 module.exports = app;
