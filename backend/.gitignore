@@ -1,4 +1,5 @@
 /node_modules
-/images
+/images/.jpg
 printf '*.jpg\n*.jpeg\n*.png\n*.gif\n' >> .gitignore
+*.jpg
 .env
