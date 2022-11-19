@@ -10,11 +10,16 @@ const path = require('path');
 //Importation helmet (protection contre les vulnérabilités web)
 const helmet = require('helmet');
 
-mongoose.connect('mongodb+srv://Sjunt:farcoune@cluster0.7hevjn8.mongodb.net/?retryWrites=true&w=majority',
+//Récupération des données du .env
+//Dotenv permet de sécuriser les mdp en passant par un fichier .env
+require('dotenv').config();
+
+mongoose.connect(process.env.MONGOOSE_URL,
 { useNewUrlParser: true,
     useUnifiedTopology: true})
     .then(() => console.log('Connexion à MongoDB réussie !'))
     .catch(() => console.log('Connexion à MongoDB échouée !'));
+//console.log(process.env.MONGOOSE_URL);
 
 app.use(express.json());
 
