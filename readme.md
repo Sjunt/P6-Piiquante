@@ -63,7 +63,7 @@ machine d'un utilisateur.
 de données.
 ● Les versions les plus récentes des logiciels sont utilisées avec des correctifs
 de sécurité actualisés.
-● Le contenu du dossier images ne doit pas être téléchargé sur GitHub.
+● Le contenu du dossier images ne doit pas être téléchargé sur GitHub. (Celui ci doit être créer dans la partie backend)
 
 
 Repository GitHub
@@ -75,7 +75,19 @@ Retirez le code de l'application front-end du repository du projet et suivez les
 (Windows)
 3. Exécutez npm install à partir du répertoire du projet
 4. Exécutez npm start
-5. Exécutez le back-end sur http://localhost:3000 seulement
+5. Exécutez le back-end sur http://localhost:3000 seulement (Nodemon)
 
 Si vous utilisez VSCode, utilisez l'extension LiveShare pour faire fonctionner le
 serveur front-end sans avoir recours à npm install.
+Sinon utilisez simplement la commande "npm run start" dans le dosier front-end.
+    
+Puis rendez vous sur  http://localhost:4200/signup depuis votre navigateur
+    
+    
+MongoDB 
+    
+Dans un fichier .env, coller le lien nécéssaire à la variable MONGOOSE_URL :
+    MONGOOSE_URL ="mongodb+srv://[PSEUDO]:[MOT DE PASS]@cluster0.7hevjn8.mongodb.net/?retryWrites=true&w=majority
+En remplacant [PSEUDO] et [MOT DE PASS] par vos identifiants 
+
+   
